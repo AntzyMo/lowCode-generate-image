@@ -1,10 +1,6 @@
 <script setup lang="ts">
   import { useCanvasSize } from '@/stores/useHeader'
   const { canvasSize } = useCanvasSize()
-  const onKeyCodeUp = e => {
-    console.log(11)
-    canvasSize.width++
-  }
 </script>
 
 <template>

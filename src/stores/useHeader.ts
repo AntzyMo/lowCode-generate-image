@@ -3,8 +3,8 @@ import { reactive } from 'vue'
 
 export const useCanvasSize = defineStore('CanvasSize', () => {
   const canvasSize = reactive({
-    width: 128,
-    height: 128
+    width: 300,
+    height: 500
   })
 
   return { canvasSize }
