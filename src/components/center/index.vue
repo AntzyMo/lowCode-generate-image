@@ -1,4 +1,10 @@
 <script setup lang="ts">
+  import { useCanvasSize } from '@/stores/useHeader'
+  import { addSuffixPx } from '@/utils'
+  const { canvasSize } = useCanvasSize()
+  const width = computed(() => addSuffixPx(canvasSize.width))
+  const height = computed(() => addSuffixPx(canvasSize.height))
+
   const arr = [
     {
       tag: 'img',
@@ -70,9 +76,9 @@
 
 <style lang="scss" scoped>
   .center-container {
-    width: 100%;
-    height: 100%;
-    // background: #000;
+    width: v-bind(width);
+    height: v-bind(height);
+    background: #fff;
 
     .edior {
       margin: 20px;

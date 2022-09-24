@@ -14,9 +14,9 @@
       </section>
 
       <!-- 中间画布 -->
-      <!-- <section class="center">
+      <section class="center">
         <CenterCom />
-      </section> -->
+      </section>
     </main>
   </div>
 </template>
@@ -33,7 +33,11 @@
       height: calc(100vh - 51px);
 
       .center {
-        width: calc(100vw - 200px);
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }
