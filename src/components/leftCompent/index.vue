@@ -1,62 +1,23 @@
 <script setup lang="ts">
   import CardBox from './components/CardBox.vue'
-  import { useCategoryList } from './hooks'
+  import { useCategoryList, useComponent } from './hooks'
+
+  // 最左侧分类
   const { categoryList, cateoryItemClick } = useCategoryList()
 
+  // 电子之后的组件库
+  const { compMap, handleDragStart, clickBox } = useComponent()
+
+  // 关闭组件层
   const isCloseComponentsBox = ref(false)
   const closeComponentBox = () => {
     isCloseComponentsBox.value = !isCloseComponentsBox.value
   }
-
-  // const imgMap = ref<imgMapType[]>([
-  //   {
-  //     tag: 'img',
-  //     style: {
-  //       width: 100,
-  //       height: 100,
-  //       left: 0,
-  //       top: 0
-  //     },
-  //     url: 'https://avatars.githubusercontent.com/u/45410431?v=4',
-  //     id: '1'
-  //   },
-  //   {
-  //     tag: 'img',
-  //     style: {
-  //       width: 100,
-  //       height: 100,
-  //       left: 0,
-  //       top: 0
-  //     },
-  //     url: 'https://github.githubassets.com/images/modules/profile/achievements/pull-shark-default.png',
-  //     id: '2'
-  //   }
-  // ])
-
-  // const handleDragStart = (e: DragEvent, item: imgMapType) => {
-  //   console.log(222)
-  //   console.log(imgRef.value, 'v')
-
-  //   console.log('e', e)
-  //   e.dataTransfer?.setData('com', `img,${item.id}`)
-  //   e.dataTransfer?.setDragImage(
-  //     imgRef.value[0],
-  //     item.style.left,
-  //     item.style.top
-  //   )
-  //   console.log(item, 'item')
-  // }
-
-  // const handleBox = (e: MouseEvent, item: imgMapType) => {
-  //   console.log(111)
-
-  //   console.log('item1', item)
-  //   console.log('e1', e)
-  // }
 </script>
 
 <template>
   <div class="leftComponents-container">
+    <!-- 左侧类目 -->
     <div class="category-box">
       <div
         v-for="item in categoryList"
@@ -69,21 +30,41 @@
         <div class="text">{{ item.text }}</div>
       </div>
     </div>
+
+    <!-- 组件库 -->
     <div
       class="component-box"
       :class="{ closeComponent: isCloseComponentsBox }"
     >
       <CardBox title="图片">
-        <el-upload
-          action="#"
-          list-type="picture-card"
-          :auto-upload="false"
-        >
-          <el-icon><i-ep-Plus /></el-icon>
-        </el-upload>
+        <div class="image-box">
+          <div
+            v-for="item in compMap"
+            :key="item.id"
+            class="box"
+            @mousedown="clickBox"
+          >
+            <img
+              ref="imgRef"
+              draggable
+              :src="item.url"
+              width="100"
+              height="100"
+              @dragstart="handleDragStart($event, item)"
+            />
+          </div>
+          <el-upload
+            action="#"
+            list-type="picture-card"
+            :auto-upload="false"
+          >
+            <el-icon><i-ep-Plus /></el-icon>
+          </el-upload>
+        </div>
       </CardBox>
     </div>
 
+    <!-- 关闭按钮 -->
     <div
       class="closeIcon"
       @click="closeComponentBox"
@@ -97,24 +78,6 @@
         <i-ep-ArrowLeft />
       </el-icon>
     </div>
-
-    <!-- <div class="image-box">
-      <div
-        v-for="item in imgMap"
-        :key="item.id"
-        class="box"
-        @mousedown="handleBox($event, item)"
-      >
-        <img
-          ref="imgRef"
-          draggable
-          :src="item.url"
-          width="100"
-          height="100"
-          @dragstart="handleDragStart($event, item)"
-        />
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -164,7 +127,7 @@
     }
 
     .component-box {
-      width: 334px;
+      width: 267px;
       height: 90vh;
       background: #252627;
       border-radius: 20px;
@@ -176,6 +139,25 @@
         width: 100px;
         height: 100px;
         background: #252627;
+      }
+
+      .image-box {
+        display: flex;
+        flex-wrap: wrap;
+
+        .box {
+          margin-right: 24px;
+          margin-bottom: 15px;
+          cursor: grab;
+
+          &:active {
+            cursor: grabbing;
+          }
+
+          &:nth-child(2) {
+            margin-right: 0;
+          }
+        }
       }
     }
 

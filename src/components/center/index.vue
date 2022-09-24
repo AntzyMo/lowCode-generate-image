@@ -1,76 +1,25 @@
 <script setup lang="ts">
-  import { useCanvasSize } from '@/stores/useHeader'
-  import { addSuffixPx } from '@/utils'
-  const { canvasSize } = useCanvasSize()
-  const width = computed(() => addSuffixPx(canvasSize.width))
-  const height = computed(() => addSuffixPx(canvasSize.height))
+  import { useCansvs, useDrag } from './hooks'
 
-  const arr = [
-    {
-      tag: 'img',
-      style: {
-        width: '100px',
-        height: '100px',
-        left: 0,
-        top: 0
-      },
-      url: 'https://avatars.githubusercontent.com/u/45410431?v=4',
-      id: '1'
-    },
-    {
-      tag: 'img',
-      style: {
-        width: '100px',
-        height: '100px',
-        left: 0,
-        top: 0
-      },
-      url: 'https://github.githubassets.com/images/modules/profile/achievements/pull-shark-default.png',
-      id: '2'
-    }
-  ]
-  interface imgMapType {
-    url: string
-    id: string
-    tag: string
-    style: {
-      width: number | string
-      height: number | string
-      left: number | string
-      top: number | string
-    }
-  }
-  const imgMap = ref<imgMapType[]>([])
-  const handleDrop = (e: DragEvent) => {
-    console.log('e', e)
-    const [tag, id] = e.dataTransfer?.getData('com').split(',')
-    const imgitem = arr.find(item => item.id == id)!
-    console.log('img', imgitem)
+  // 画布大小
+  const { width, height } = useCansvs()
 
-    imgitem.style.left = `${e.x}px`
-    imgitem.style.top = `${e.y}px`
-    imgMap.value.push(imgitem)
-  }
-
-  const handleDragOver = (e: DragEvent) => {
-    // e.dataTransfer.dropEffect = 'copy'
-  }
+  // 拖放进画布
+  const { compMap, handleDrop } = useDrag()
 </script>
 
 <template>
   <div
     class="center-container"
     @drop.prevent="handleDrop"
-    @dragover.prevent="handleDragOver"
+    @dragover.prevent
   >
-    <div class="edior">
-      <!-- <img
-        v-for="item in imgMap"
-        :key="item.id"
-        :src="item.url"
-        :style="item.style"
-      /> -->
-    </div>
+    <img
+      v-for="item in compMap"
+      :key="item.id"
+      :src="item.url"
+      :style="item.style"
+    />
   </div>
 </template>
 
@@ -79,16 +28,8 @@
     width: v-bind(width);
     height: v-bind(height);
     background: #fff;
-
-    .edior {
-      margin: 20px;
-      height: 100%;
-      // background: #fff;
-      position: relative;
-
-      img {
-        position: absolute;
-      }
+    img {
+      position: absolute;
     }
   }
 </style>
