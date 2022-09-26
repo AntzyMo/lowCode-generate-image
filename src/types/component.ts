@@ -10,4 +10,5 @@ export interface compMapType {
   id: string
   tag: string
   style: styleType
+  index?: number
 }

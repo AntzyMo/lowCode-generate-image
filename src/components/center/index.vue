@@ -18,7 +18,12 @@
       v-for="item in compMap"
       :key="item.id"
       :src="item.url"
-      :style="item.style"
+      :style="{
+        width: item.style.width + 'px',
+        height: item.style.height + 'px',
+        left: item.style.left + 'px',
+        top: item.style.top + 'px'
+      }"
     />
   </div>
 </template>

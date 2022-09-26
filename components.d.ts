@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Base: typeof import('./src/components/rightProps/components/base.vue')['default']
     CardBox: typeof import('./src/components/CardBox/index.vue')['default']
     Center: typeof import('./src/components/center/index.vue')['default']
     CompBox: typeof import('./src/components/CompBox/index.vue')['default']
@@ -28,8 +29,11 @@ declare module '@vue/runtime-core' {
     IEpClose: typeof import('~icons/ep/close')['default']
     IEpPlus: typeof import('~icons/ep/plus')['default']
     IEpZoomIn: typeof import('~icons/ep/zoom-in')['default']
+    Input: typeof import('./src/components/rightProps/components/input.vue')['default']
+    InputBox: typeof import('./src/components/rightProps/components/base/InputBox.vue')['default']
     LeftCompent: typeof import('./src/components/leftCompent/index.vue')['default']
     LeftComponent: typeof import('./src/components/LeftComponent/index.vue')['default']
+    PropsBox: typeof import('./src/components/rightProps/components/PropsBox.vue')['default']
     RightProps: typeof import('./src/components/rightProps/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

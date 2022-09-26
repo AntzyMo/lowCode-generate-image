@@ -1,6 +1,6 @@
 <script setup lang="ts">
   interface props {
-    arrowLoc: 'left' | 'right'
+    arrowLoc?: 'left' | 'right'
   }
   const { arrowLoc = 'left' } = defineProps<props>()
 
