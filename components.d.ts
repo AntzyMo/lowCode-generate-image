@@ -37,6 +37,7 @@ declare module '@vue/runtime-core' {
     RightProps: typeof import('./src/components/rightProps/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ShapeBox: typeof import('./src/components/ShapeBox/index.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }

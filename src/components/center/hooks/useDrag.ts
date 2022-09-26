@@ -1,8 +1,5 @@
-import { ref } from 'vue'
-
 import { useCompMap } from '@/stores/useCenter'
 import { useClickCompOffest } from '@/stores/useLeftComponent'
-import type { compMapType } from '@/types/component'
 import { image } from '@/utils/data'
 
 export default () => {

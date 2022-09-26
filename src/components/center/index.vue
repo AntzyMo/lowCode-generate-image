@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import ShapeBox from '../ShapeBox/index.vue'
   import { useCansvs, useDrag } from './hooks'
 
   // 画布大小
@@ -14,17 +15,13 @@
     @drop.prevent="handleDrop"
     @dragover.prevent
   >
-    <img
+    <ShapeBox
       v-for="item in compMap"
       :key="item.id"
-      :src="item.url"
-      :style="{
-        width: item.style.width + 'px',
-        height: item.style.height + 'px',
-        left: item.style.left + 'px',
-        top: item.style.top + 'px'
-      }"
-    />
+      :item="item"
+    >
+      <img :src="item.url" />
+    </ShapeBox>
   </div>
 </template>
 
@@ -34,7 +31,8 @@
     height: v-bind(height);
     background: #fff;
     img {
-      position: absolute;
+      width: 100%;
+      height: 100%;
     }
   }
 </style>
