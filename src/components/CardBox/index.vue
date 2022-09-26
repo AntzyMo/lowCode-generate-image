@@ -17,7 +17,7 @@
 <style lang="scss" scoped>
   .card-box {
     color: #fff;
-    font-size: 18px;
+    font-size: 15px;
     margin: 18px;
 
     .title {

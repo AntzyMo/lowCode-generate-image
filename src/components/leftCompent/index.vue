@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import CardBox from './components/CardBox.vue'
   import { useCategoryList, useComponent } from './hooks'
 
   // 最左侧分类
@@ -7,12 +6,6 @@
 
   // 电子之后的组件库
   const { compMap, handleDragStart, clickBox } = useComponent()
-
-  // 关闭组件层
-  const isCloseComponentsBox = ref(false)
-  const closeComponentBox = () => {
-    isCloseComponentsBox.value = !isCloseComponentsBox.value
-  }
 </script>
 
 <template>
@@ -32,10 +25,7 @@
     </div>
 
     <!-- 组件库 -->
-    <div
-      class="component-box"
-      :class="{ closeComponent: isCloseComponentsBox }"
-    >
+    <CompBox arrow-loc="right">
       <CardBox title="图片">
         <div class="image-box">
           <div
@@ -62,22 +52,7 @@
           </el-upload>
         </div>
       </CardBox>
-    </div>
-
-    <!-- 关闭按钮 -->
-    <div
-      class="closeIcon"
-      @click="closeComponentBox"
-    >
-      <el-icon
-        color="#fff"
-        :size="20"
-        class="arrowIcon"
-        :class="{ arrowIconAcitve: isCloseComponentsBox }"
-      >
-        <i-ep-ArrowLeft />
-      </el-icon>
-    </div>
+    </CompBox>
   </div>
 </template>
 
@@ -126,61 +101,28 @@
       }
     }
 
-    .component-box {
-      width: 267px;
-      height: 90vh;
+    &:deep(.el-upload) {
+      width: 100px;
+      height: 100px;
       background: #252627;
-      border-radius: 20px;
-      box-sizing: border-box;
-      transition: width 0.5s;
-      overflow: hidden;
-
-      &:deep(.el-upload) {
-        width: 100px;
-        height: 100px;
-        background: #252627;
-      }
-
-      .image-box {
-        display: flex;
-        flex-wrap: wrap;
-
-        .box {
-          margin-right: 24px;
-          margin-bottom: 15px;
-          cursor: grab;
-
-          &:active {
-            cursor: grabbing;
-          }
-
-          &:nth-child(2) {
-            margin-right: 0;
-          }
-        }
-      }
     }
 
-    .closeComponent {
-      width: 0;
-    }
-
-    .closeIcon {
-      width: 25px;
-      height: 182px;
-      background: #252627;
-      border-radius: 0 20px 20px 0;
+    .image-box {
       display: flex;
-      align-items: center;
-      cursor: pointer;
+      flex-wrap: wrap;
 
-      .arrowIcon {
-        transform: rotate(0);
-        transition: transform 0.5s;
-      }
+      .box {
+        margin-right: 24px;
+        margin-bottom: 15px;
+        cursor: grab;
 
-      .arrowIconAcitve {
-        transform: rotate(180deg);
+        &:active {
+          cursor: grabbing;
+        }
+
+        &:nth-child(2) {
+          margin-right: 0;
+        }
       }
     }
   }

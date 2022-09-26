@@ -7,8 +7,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    CardBox: typeof import('./src/components/leftCompent/components/CardBox.vue')['default']
+    CardBox: typeof import('./src/components/CardBox/index.vue')['default']
     Center: typeof import('./src/components/center/index.vue')['default']
+    CompBox: typeof import('./src/components/CompBox/index.vue')['default']
     Draggable: typeof import('./src/components/draggable.vue')['default']
     ElCollapse: typeof import('element-plus/es')['ElCollapse']
     ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem']
@@ -23,11 +24,13 @@ declare module '@vue/runtime-core' {
     IconSupport: typeof import('./src/components/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
     IEpArrowLeft: typeof import('~icons/ep/arrow-left')['default']
+    IEpArrowRight: typeof import('~icons/ep/arrow-right')['default']
     IEpClose: typeof import('~icons/ep/close')['default']
     IEpPlus: typeof import('~icons/ep/plus')['default']
     IEpZoomIn: typeof import('~icons/ep/zoom-in')['default']
     LeftCompent: typeof import('./src/components/leftCompent/index.vue')['default']
     LeftComponent: typeof import('./src/components/LeftComponent/index.vue')['default']
+    RightProps: typeof import('./src/components/rightProps/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
