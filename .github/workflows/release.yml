@@ -18,7 +18,7 @@ jobs:
       # 执行npm脚本打包项目
       - name: Install and Build
         run: |
-          pnpm i pnpm -g
+          npm i pnpm -g
           pnpm i 
           pnpm build
       
