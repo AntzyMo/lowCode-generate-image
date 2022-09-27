@@ -20,7 +20,7 @@ jobs:
         run: |
           npm i pnpm -g
           pnpm i 
-          pnpm build
+          pnpm build-only
       
       # 执行JamesIves/github-pages-deploy-action将项目发布到Github Pages
       - name: Deploy
