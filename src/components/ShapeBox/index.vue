@@ -1,12 +1,33 @@
 <script setup lang="ts">
-  import type { compMapType } from '@/types/component'
+  import { useCompMap } from '@/stores/useCenter'
+  import type { compMapType, styleType } from '@/types/component'
   interface props {
     item: compMapType
   }
   defineProps<props>()
 
-  const handleEllipse = e => {
-    console.log('e', e)
+  const curStyle = ref<styleType>()
+  const { getCurrentStyle } = useCompMap()
+  curStyle.value = getCurrentStyle()
+
+  const onMouseDown = ({ x, y }: MouseEvent) => {
+    const XY = { x, y }
+
+    const onMouseMove = (e: MouseEvent) => {
+      const { x: moveX, y: moveY } = e
+
+      const value = x - moveX
+      console.log('value', value)
+      curStyle.value.width = curStyle.value.width + e.clientX - XY.x
+    }
+
+    const onMouseUp = () => {
+      document.removeEventListener('mousemove', onMouseMove)
+      document.removeEventListener('mouseup', onMouseUp)
+    }
+
+    document.addEventListener('mousemove', onMouseMove)
+    document.addEventListener('mouseup', onMouseUp)
   }
 </script>
 
@@ -29,7 +50,7 @@
     <!-- 矩形 -->
     <i
       class="ellipse leftCenter"
-      @mousedown="handleEllipse"
+      @mousedown.stop.prevent="onMouseDown"
     />
     <i class="ellipse rightCenter" />
 

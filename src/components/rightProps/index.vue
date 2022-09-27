@@ -9,7 +9,7 @@
   provide('activeMap', activeMap)
 
   watch(store.compMap, () => {
-    activeMap.value = store.compMap[store.activeIdx].style
+    activeMap.value = store.getCurrentStyle()
   })
 </script>
 

@@ -12,5 +12,8 @@ export const useCompMap = defineStore('CompMap', () => {
     compMap.value.push(data)
   }
 
-  return { activeIdx, compMap, addCompMap }
+  // 获取当前选中的样式
+  const getCurrentStyle = () => compMap.value[activeIdx.value].style
+
+  return { activeIdx, compMap, addCompMap, getCurrentStyle }
 })
