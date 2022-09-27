@@ -8,9 +8,12 @@
   const activeMap = ref()
   provide('activeMap', activeMap)
 
-  watch(store.compMap, () => {
-    activeMap.value = store.getCurrentStyle()
-  })
+  watch(
+    () => store.activeIdx,
+    () => {
+      activeMap.value = store.getCurrentStyle()
+    }
+  )
 </script>
 
 <template>

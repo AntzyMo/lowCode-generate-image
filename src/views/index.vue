@@ -31,7 +31,6 @@
   .container {
     height: 100vh;
     background: #1e1e1e;
-    cursor: url('@/assets/mouse.png') 4 12, auto;
 
     main {
       display: flex;

@@ -5,7 +5,7 @@ import type { compMapType } from '@/types/component'
 
 export const useCompMap = defineStore('CompMap', () => {
   const compMap = ref<compMapType[]>([])
-  const activeIdx = ref(0)
+  const activeIdx = ref(-1)
 
   const addCompMap = (data: compMapType) => {
     activeIdx.value = compMap.value.length
