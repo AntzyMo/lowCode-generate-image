@@ -1,11 +1,26 @@
 <script setup lang="ts">
   import { useCanvasSize } from '@/stores/useHeader'
+
+  import useMethods from './hooks'
+
   const { canvasSize } = useCanvasSize()
+  const { downloadImg } = useMethods()
 </script>
 
 <template>
   <header class="header-container">
     <div class="center-box">
+      <div
+        class="methodsBox"
+        @click="downloadImg"
+      >
+        <img
+          class="icon"
+          src="@/assets/out.svg"
+          alt="导出"
+        />
+      </div>
+
       <div class="canvasSize-box">
         <div class="name">画布大小</div>
         <div class="size">
@@ -49,6 +64,18 @@
       top: 18px;
       left: 50%;
       transform: translateX(-50%);
+      .methodsBox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        .icon {
+          width: 23px;
+          height: 23px;
+          margin-right: 18px;
+        }
+      }
       .canvasSize-box {
         display: flex;
         align-items: center;

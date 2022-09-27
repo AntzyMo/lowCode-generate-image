@@ -20,6 +20,7 @@
 
 <template>
   <div
+    id="center"
     class="center-container"
     @drop.prevent="handleDrop"
     @dragover.prevent
