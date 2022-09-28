@@ -10,7 +10,7 @@ import { defineConfig } from 'vite'
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => ({
   /* 可以删除 只是用来配置git pages */
-  base: command === 'build' ? '/test-lowCode-generate-image/' : '/',
+  base: command === 'build' ? '/lowCode-generate-image/' : '/',
 
   plugins: [
     vue({
