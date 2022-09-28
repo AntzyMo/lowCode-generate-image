@@ -3,22 +3,25 @@
 
   import BaseComp from './components/base.vue'
   const store = useCompMap()
-
   // 获取选中的数据
   const activeMap = ref()
+  const showCompBox = ref(false)
   provide('activeMap', activeMap)
 
   watch(
     () => store.activeIdx,
     () => {
-      activeMap.value = store.getCurrentStyle()
+      const value = store.getCurrentStyle()
+      activeMap.value = value
+      showCompBox.value = Boolean(value)
+      console.log('showCompBox.value', showCompBox.value)
     }
   )
 </script>
 
 <template>
   <div class="rightProps-container">
-    <CompBox>
+    <CompBox v-model="showCompBox">
       <BaseComp />
     </CompBox>
   </div>

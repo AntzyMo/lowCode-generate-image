@@ -2,9 +2,9 @@
   import { useCategoryList, useComponent } from './hooks'
 
   // 最左侧分类
-  const { categoryList, cateoryItemClick } = useCategoryList()
+  const { categoryList, cateoryItemClick, showCompBox } = useCategoryList()
 
-  // 电子之后的组件库
+  // 点击之后的组件库
   const { compMap, handleDragStart, clickBox } = useComponent()
 </script>
 
@@ -25,7 +25,10 @@
     </div>
 
     <!-- 组件库 -->
-    <CompBox arrow-loc="right">
+    <CompBox
+      v-model="showCompBox"
+      arrow-loc="right"
+    >
       <CardBox title="图片">
         <div class="image-box">
           <div
@@ -43,13 +46,13 @@
               @dragstart="handleDragStart($event, item)"
             />
           </div>
-          <el-upload
+          <!-- <el-upload
             action="#"
             list-type="picture-card"
             :auto-upload="false"
           >
             <el-icon><i-ep-Plus /></el-icon>
-          </el-upload>
+          </el-upload> -->
         </div>
       </CardBox>
     </CompBox>

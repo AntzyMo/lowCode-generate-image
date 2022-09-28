@@ -7,16 +7,12 @@ export interface listType {
 }
 
 export default () => {
+  const showCompBox = ref(true)
   const categoryList = ref<listType[]>([
     {
       text: '素材',
       src: material,
       active: true
-    },
-    {
-      text: '素材1',
-      src: material,
-      active: false
     }
   ])
 
@@ -26,5 +22,5 @@ export default () => {
     data.active = true
   }
 
-  return { categoryList, cateoryItemClick }
+  return { categoryList, cateoryItemClick, showCompBox }
 }

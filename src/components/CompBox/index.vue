@@ -1,13 +1,14 @@
 <script setup lang="ts">
   interface props {
     arrowLoc?: 'left' | 'right'
+    modelValue: boolean
   }
-  const { arrowLoc = 'left' } = defineProps<props>()
+  const { arrowLoc = 'left', modelValue } = defineProps<props>()
+  const emit = defineEmits(['update:modelValue'])
 
   // 关闭组件层
-  const isCloseComponentsBox = ref(false)
   const closeComponentBox = () => {
-    isCloseComponentsBox.value = !isCloseComponentsBox.value
+    emit('update:modelValue', !modelValue)
   }
 </script>
 
@@ -23,7 +24,7 @@
         color="#fff"
         :size="20"
         class="arrowIcon"
-        :class="{ arrowIconAcitve: isCloseComponentsBox }"
+        :class="{ arrowIconAcitve: !modelValue }"
       >
         <i-ep-ArrowRight />
       </el-icon>
@@ -31,7 +32,7 @@
 
     <div
       class="component-box"
-      :class="{ closeComponent: isCloseComponentsBox }"
+      :class="{ closeComponent: !modelValue }"
     >
       <slot />
     </div>
@@ -46,7 +47,7 @@
         color="#fff"
         :size="20"
         class="arrowIcon"
-        :class="{ arrowIconAcitve: isCloseComponentsBox }"
+        :class="{ arrowIconAcitve: !modelValue }"
       >
         <i-ep-ArrowLeft />
       </el-icon>
